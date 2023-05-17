@@ -11,3 +11,10 @@ This is where the program enters. It begins by collecting the user's args and en
 ## process_structs.rs
 
 This is where the structures used are defined. There are two structures used, **ArrivalSortedProcess** and **DurationSortedProcess**. These two structs contain the same fields, both mimicking the Process struct from the C++ variant of the project. The reason there are two is that custom ordering functionality is defined for each process, so that when they are used in a binary heap, they can be correctly ordered. **ArrivalSortedProcess** is defined to be sorted by its arrival, allowing a binary heap to select first the processes with the lowest arrival time. **DurationSortedProcess** is defined to be sorted by its duration field, allowing a binary heap to select first the processes with the shortest duration.
+
+## scheduling.rs
+
+This is where all the algorithm, reading, and printing methods exist. The file format follows the same format as my C++ variant. The included methods are:
+### read_workload
+This method takes in a String reference for a filename. It then opens the file, and reads each line, using the space as a delimiter to isolate out the arrival and duration times. It then creates an **ArrivalSortedProcess** with this data and adds it to a binary heap. Once all lines are parsed to create an **ArrivalSortedProcess**, a Result is returned containing the binary heap if successful.
+## show_workload
