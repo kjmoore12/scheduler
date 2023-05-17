@@ -17,4 +17,11 @@ This is where the structures used are defined. There are two structures used, **
 This is where all the algorithm, reading, and printing methods exist. The file format follows the same format as my C++ variant. The included methods are:
 ### read_workload
 This method takes in a String reference for a filename. It then opens the file, and reads each line, using the space as a delimiter to isolate out the arrival and duration times. It then creates an **ArrivalSortedProcess** with this data and adds it to a binary heap. Once all lines are parsed to create an **ArrivalSortedProcess**, a Result is returned containing the binary heap if successful.
-## show_workload
+### show_workload
+This method takes in a binary heap of **ArrivalSortedProcess** and prints each one's arrival and duration time.
+### show_processes
+This method takes in a vector reference of **ArrivalSortedProcess** and prints all fields from each one.
+### fifo
+This method takes in a mutable binary heap of **ArrivalSortedProcess** and returns a vector of **ArrivalSortedProcess**. The vector stores the processes in order of completion (ordered using First-In First-Out). It is populated by iterating through each processes from the heap (which is already sorted by arrival time). It then runs the process, increasing the time to reflect the duration the task process, and updating the fields of the process.
+### sjf
+This method takes in a mutable binary heap of **ArrivalSortedProcess** and returns a vector of **ArrivalSortedProcess**. The vector stores the processes in order of completion (ordered using Shortest Job First). It does this by looping continously. In an innner loop, all processes that have already arrived at the time are converted to **DurationSortedProcess** and added to a binary heap. The inner loop terminates when no more processes have arrived at the time. A second inner loop runs, which selects the shortest task (top of the binary heap), runs it, and completes its fields before adding it to the complete vector. Time is increased to reflect the run. If another task has arrived, the inner loop ends and the outer loop repeats. Otherwise, this inner loop runs until all tasks have completed, then breaks returns the complete vector. 
